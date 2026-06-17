@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ADHD Prediction - Concrete ML</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+
+            background: linear-gradient(rgba(15,23,42,0.85),
+                        rgba(15,23,42,0.92)),
+                        url("{{ url_for('static', filename='background/main_latest.jpeg') }}");
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: scroll;
+            color: white;
+        }
+
+        /* ===== NAVBAR ===== */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            padding: 20px 60px;
+            backdrop-filter: blur(20px);
+            background: rgba(0,0,0,0.45);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .navbar h1 {
+            font-size: 20px;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .logout a {
+            text-decoration: none;
+            background: linear-gradient(45deg,#ff4e50,#ff6a00);
+            padding: 8px 18px;
+            border-radius: 25px;
+            color: white;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .logout a:hover {
+            transform: scale(1.08);
+        }
+
+        /* ===== WRAPPER ===== */
+
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            padding: 60px 20px;
+        }
+
+        .form-container {
+            width: 950px;
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(25px);
+            border-radius: 25px;
+            padding: 50px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+            animation: fadeIn 1.2s ease;
+        }
+
+        @keyframes fadeIn {
+            from {opacity:0; transform:translateY(30px);}
+            to {opacity:1; transform:translateY(0);}
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 50px;
+            background: linear-gradient(to right,#00f2fe,#a18cd1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* ===== SECTION CARD ===== */
+
+        .section {
+            background: rgba(255,255,255,0.08);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            color: #00f2fe;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        label {
+            font-size: 14px;
+            opacity: 0.85;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 6px;
+            margin-bottom: 18px;
+            border-radius: 12px;
+            border: none;
+            outline: none;
+            background: rgba(255,255,255,0.15);
+            color: white;
+            transition: 0.3s;
+        }
+
+        input:focus, select:focus {
+            background: rgba(0,242,254,0.2);
+            transform: scale(1.02);
+            box-shadow: 0 0 10px #00f2fe;
+        }
+
+        input[readonly] {
+            background: rgba(0,242,254,0.15);
+            font-weight: bold;
+        }
+
+        button {
+            width: 100%;
+            padding: 16px;
+            border-radius: 30px;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            background: linear-gradient(45deg,#00f2fe,#4facfe);
+            color: #0f172a;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px #00f2fe;
+        }
+
+        @media(max-width:1000px){
+            .form-container{
+                width:100%;
+                padding:30px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="navbar">
+    <h1>ADHD  – Secure FHE Prediction</h1>
+    <div class="logout">
+        <a href="{{ url_for('main.logout') }}">Logout</a>
+    </div>
+</div>
+
+<div class="wrapper">
+
+<div class="form-container">
+
+<h2>ADHD Risk Assessment System</h2>
+
+<form method="POST">
+
+<!-- BASIC INFO -->
+<div class="section">
+<div class="section-title">Basic Information</div>
+
+<label>Age</label>
+<input type="number" name="Age" required>
+
+<label>Gender</label>
+<select name="Gender" required>
+    <option value="">Select</option>
+    <option>Male</option>
+    <option>Female</option>
+</select>
+
+<label>Education Stage</label>
+<select name="EducationStage" required>
+    <option value="">Select</option>
+    <option>Child</option>
+    <option>Teen</option>
+    <option>Undergrad</option>
+    <option>Adult</option>
+</select>
+</div>
+
+<!-- SYMPTOM SCORES -->
+<div class="section">
+<div class="section-title">Symptom Assessment</div>
+
+<label>Inattention Score</label>
+<input type="number" name="InattentionScore" required>
+
+<label>Hyperactivity Score</label>
+<input type="number" name="HyperactivityScore" required>
+
+<label>Impulsivity Score</label>
+<input type="number" name="ImpulsivityScore" required>
+
+<label>Symptom Sum</label>
+<input type="number" name="SymptomSum" readonly required>
+
+<label>Daydreaming (0/1)</label>
+<input type="number" name="Daydreaming" min="0" max="1" required>
+
+<label>RSD (0/1)</label>
+<input type="number" name="RSD" min="0" max="1" required>
+</div>
+
+<!-- LIFESTYLE & SUPPORT -->
+<div class="section">
+<div class="section-title">Lifestyle & Support</div>
+
+<label>Sleep Hours</label>
+<input type="number" name="SleepHours" step="any" required>
+
+<label>Screen Time Hours</label>
+<input type="number" name="ScreenTimeHours" step="any" required>
+
+<label>Comorbid Anxiety (0/1)</label>
+<input type="number" name="ComorbidAnxiety" min="0" max="1" required>
+
+<label>Comorbid Depression (0/1)</label>
+<input type="number" name="ComorbidDepression" min="0" max="1" required>
+
+<label>Family History ADHD (0/1)</label>
+<input type="number" name="FamilyHistoryADHD" min="0" max="1" required>
+
+<label>Medication</label>
+<select name="Medication" required>
+    <option value="">Select</option>
+    <option>No</option>
+    <option>Stimulant</option>
+    <option>Non-stimulant</option>
+</select>
+
+<label>School Support</label>
+<select name="SchoolSupport" required>
+    <option value="">Select</option>
+    <option>Therapy</option>
+    <option>Accommodations</option>
+</select>
+
+<label>Academic Score</label>
+<input type="number" name="AcademicScore" step="any" required>
+</div>
+
+<button type="submit">Predict ADHD Securely</button>
+
+</form>
+
+</div>
+</div>
+
+<!-- ================= SMART UX SCRIPT ================= -->
+
+<script>
+
+    // ===== AUTO EDUCATION BASED ON AGE =====
+    const ageInput = document.querySelector("input[name='Age']");
+    const educationSelect = document.querySelector("select[name='EducationStage']");
+
+    ageInput.addEventListener("input", function() {
+        const age = parseInt(this.value);
+        if (!age) return;
+
+        if (age <= 12) {
+            educationSelect.value = "Child";
+        } else if (age >= 13 && age <= 17) {
+            educationSelect.value = "Teen";
+        } else if (age >= 18 && age <= 22) {
+            educationSelect.value = "Undergrad";
+        } else {
+            educationSelect.value = "Adult";
+        }
+    });
+
+    // ===== AUTO SYMPTOM SUM =====
+    const inattention = document.querySelector("input[name='InattentionScore']");
+    const hyperactivity = document.querySelector("input[name='HyperactivityScore']");
+    const impulsivity = document.querySelector("input[name='ImpulsivityScore']");
+    const symptomSum = document.querySelector("input[name='SymptomSum']");
+
+    function calculateSum() {
+        const i = parseFloat(inattention.value) || 0;
+        const h = parseFloat(hyperactivity.value) || 0;
+        const im = parseFloat(impulsivity.value) || 0;
+        symptomSum.value = i + h + im;
+    }
+
+    inattention.addEventListener("input", calculateSum);
+    hyperactivity.addEventListener("input", calculateSum);
+    impulsivity.addEventListener("input", calculateSum);
+
+</script>
+
+</body>
+</html>
