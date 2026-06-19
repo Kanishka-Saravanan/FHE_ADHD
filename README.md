@@ -6,15 +6,11 @@ NeuroShield is a secure healthcare analytics application that predicts Attention
 
 Unlike conventional machine learning applications where patient data must be decrypted before processing, NeuroShield ensures that data remains encrypted throughout the inference pipeline, providing a privacy-preserving and secure AI solution suitable for healthcare environments.
 
----
-
 ## Problem Statement
 
 Healthcare datasets contain highly sensitive personal information, and traditional machine learning systems may expose this data during processing. This creates privacy and security concerns, especially in applications involving psychological and medical diagnosis.
 
 NeuroShield addresses this challenge by implementing Fully Homomorphic Encryption, allowing secure ADHD prediction without revealing the user's raw data to the prediction server.
-
----
 
 ## Key Features
 
@@ -26,8 +22,6 @@ NeuroShield addresses this challenge by implementing Fully Homomorphic Encryptio
 - Data preprocessing using Label Encoding and Standard Scaling
 - Professional Flask-based web interface
 - Privacy-preserving healthcare analytics architecture
-
----
 
 ## System Architecture
 
@@ -65,8 +59,6 @@ Secure Prediction Result
 | Joblib | Model serialization |
 | Pandas & NumPy | Data processing |
 
----
-
 ## Dataset Information
 
 The project uses a structured ADHD behavioral dataset containing demographic, behavioral, and medical attributes.
@@ -96,8 +88,6 @@ The project uses a structured ADHD behavioral dataset containing demographic, be
 - `0` → No ADHD
 - `1` → ADHD
 
----
-
 ## Data Preprocessing
 
 The following preprocessing techniques were applied:
@@ -106,8 +96,6 @@ The following preprocessing techniques were applied:
 - Standard Scaling for numerical normalization
 - Feature extraction and target separation
 - Training and testing dataset split
-
----
 
 ## Machine Learning Model
 
@@ -120,8 +108,6 @@ The model was selected because it provides:
 - Fast computation suitable for FHE
 - Low computational overhead
 - Better interpretability for healthcare applications
-
----
 
 ## Security Implementation
 
@@ -141,8 +127,6 @@ NeuroShield uses Fully Homomorphic Encryption to maintain data confidentiality.
 - Privacy-by-design machine learning architecture
 - Suitable for secure healthcare deployments
 
----
-
 ## Application Modules
 
 ### Authentication Module
@@ -160,16 +144,12 @@ NeuroShield uses Fully Homomorphic Encryption to maintain data confidentiality.
 - FHE-based prediction execution
 - ADHD prediction result display
 
----
-
 ## Model Performance
 
 | Metric | Result |
 |--------|--------|
 | Plain Model Accuracy | 77% |
 | FHE Compilation | Successfully Compiled |
-
----
 
 ## Project Structure
 
@@ -194,8 +174,6 @@ NeuroShield/
 ├── requirements.txt            # Project dependencies
 └── README.md                   # Project documentation
 ```
-
----
 
 ## Installation and Setup
 
@@ -244,8 +222,6 @@ Open your browser and visit:
 http://localhost:5000
 ```
 
----
-
 ## Future Enhancements
 
 - Support for advanced machine learning models with FHE
@@ -253,8 +229,6 @@ http://localhost:5000
 - Integration with electronic health record systems
 - Enhanced model performance and optimization
 - Multi-user healthcare management dashboard
-
----
 
 ## Conclusion
 
