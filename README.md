@@ -239,6 +239,3 @@ This project showcases how cryptographic techniques can be integrated with moder
 
 ---
 
-## License
-
-This project is developed for educational and research purposes.
